@@ -15,17 +15,17 @@ export const ToastNotification: React.FC<ToastNotificationProps> = ({ toast, onD
   return (
     <div className="fixed bottom-6 inset-x-4 sm:inset-x-auto sm:right-6 sm:w-96 z-50 animate-in slide-in-from-bottom-5 duration-300">
       <div
-        className={`p-4 rounded-2xl border shadow-2xl backdrop-blur-md relative flex items-start gap-3.5 ${
+        className={`p-4 rounded-2xl border shadow-2xl backdrop-blur-md relative flex items-start gap-4 bg-surface/95 ${
           isSavingsWin
-            ? 'bg-slate-900/95 border-emerald-500/50 text-emerald-100 shadow-emerald-950/60'
-            : 'bg-slate-900/95 border-indigo-500/40 text-slate-100 shadow-indigo-950/40'
+            ? 'border-secondary-pop/40'
+            : 'border-accent/40'
         }`}
       >
         <div
           className={`p-2 rounded-xl shrink-0 mt-0.5 border ${
             isSavingsWin
-              ? 'bg-emerald-950 border-emerald-600/60 text-emerald-400'
-              : 'bg-indigo-950 border-indigo-600/60 text-indigo-400'
+              ? 'bg-secondary-pop-muted border-secondary-pop/40 text-secondary-pop'
+              : 'bg-accent-muted border-accent/40 text-accent'
           }`}
         >
           {isSavingsWin ? (
@@ -39,28 +39,28 @@ export const ToastNotification: React.FC<ToastNotificationProps> = ({ toast, onD
           <div className="flex items-center justify-between gap-2">
             <span
               className={`text-xs font-bold uppercase tracking-wider ${
-                isSavingsWin ? 'text-emerald-400' : 'text-indigo-300'
+                isSavingsWin ? 'text-secondary-pop' : 'text-accent'
               }`}
             >
               {isSavingsWin ? 'Reclaimed Life Win!' : 'Conscious Choice'}
             </span>
-            <span className="text-xs font-bold font-mono-num text-slate-200">
+            <span className="text-xs font-bold font-mono-num text-text">
               {isSavingsWin ? `+${toast.timeFormatted}` : toast.timeFormatted}
             </span>
           </div>
 
-          <p className="text-xs sm:text-sm font-medium text-slate-200 leading-snug">
+          <p className="text-xs sm:text-sm font-medium text-text leading-snug">
             "{toast.phrase}"
           </p>
 
-          <p className="text-[11px] text-slate-400 font-mono-num">
+          <p className="text-[11px] text-text-muted font-mono-num">
             {toast.title} • {toast.amountFormatted}
           </p>
         </div>
 
         <button
           onClick={onDismiss}
-          className="absolute top-3 right-3 text-slate-400 hover:text-slate-200 transition-colors"
+          className="absolute top-4 right-4 text-text-muted hover:text-text transition-colors"
         >
           <X className="w-4 h-4" />
         </button>

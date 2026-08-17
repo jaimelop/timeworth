@@ -43,40 +43,40 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onSave, initia
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md overflow-y-auto">
-      <div className="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl relative my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/90 backdrop-blur-md overflow-y-auto">
+      <div className="w-full max-w-lg bg-surface border border-border rounded-2xl p-6 sm:p-8 shadow-2xl relative my-8">
         {/* Subtle decorative glow */}
-        <div className="absolute -top-10 -right-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Header Icon */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 rounded-xl bg-emerald-950/60 border border-emerald-700/50 flex items-center justify-center text-emerald-400">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-12 h-12 rounded-2xl bg-accent-muted border border-border-accent flex items-center justify-center text-accent">
             <Clock className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
               Welcome to TimeWorth
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400">
+            <p className="text-xs sm:text-sm text-text-muted">
               Calculate the true cost of purchases in hours of your life.
             </p>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4">
           {/* Net Income Input */}
           <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-xs font-semibold uppercase tracking-wider text-text">
                 Net Take-Home Pay
               </label>
-              <span className="text-[11px] text-emerald-400/90 flex items-center gap-1 font-medium">
+              <span className="text-[11px] text-accent/80 flex items-center gap-1 font-medium">
                 <Shield className="w-3 h-3" /> After taxes & deductions
               </span>
             </div>
 
             <div className="relative flex items-center">
-              <span className="absolute left-3.5 text-slate-400 font-medium text-base">
+              <span className="absolute left-4 text-text-muted font-medium text-base">
                 {currency}
               </span>
               <input
@@ -88,14 +88,14 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onSave, initia
                 value={netIncome}
                 onChange={(e) => setNetIncome(e.target.value === '' ? '' : Math.max(0, parseFloat(e.target.value)))}
                 placeholder="4500"
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/50 font-mono-num text-base font-semibold"
+                className="w-full pl-10 pr-4 py-2 rounded-xl bg-surface-alt border border-border text-text placeholder:text-text-faint focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/40 font-mono-num text-base font-semibold"
               />
             </div>
           </div>
 
           {/* Pay Frequency Switcher */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-text mb-2">
               Payment Frequency
             </label>
             <div className="flex flex-wrap gap-2">
@@ -104,10 +104,10 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onSave, initia
                   key={freq}
                   type="button"
                   onClick={() => setFrequency(freq)}
-                  className={`flex-1 min-w-[60px] py-2 px-1 sm:px-3 rounded-lg text-[11px] sm:text-sm font-medium capitalize transition-all border ${
+                  className={`flex-1 min-w-[60px] py-2 px-2 sm:px-4 rounded-xl text-[11px] sm:text-sm font-medium capitalize transition-all border ${
                     frequency === freq
-                      ? 'bg-emerald-950/60 border-emerald-600/70 text-emerald-300 shadow-sm'
-                      : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                      ? 'bg-accent-muted border-accent text-accent shadow-sm'
+                      : 'bg-surface-alt border-border text-text-muted hover:text-text hover:bg-surface-alt/80'
                   }`}
                 >
                   {freq}
@@ -119,7 +119,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onSave, initia
           {/* Weekly Work Hours & Currency */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-text mb-2">
                 Weekly Work Hours
               </label>
               <input
@@ -131,22 +131,22 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onSave, initia
                 value={weeklyHours}
                 onChange={(e) => setWeeklyHours(e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value, 10)))}
                 placeholder="40"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/50 font-mono-num text-sm font-semibold"
+                className="w-full px-4 py-2 rounded-xl bg-surface-alt border border-border text-text placeholder:text-text-faint focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/40 font-mono-num text-sm font-semibold"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-text mb-2">
                 Currency
               </label>
               <select
                 id="onboarding-currency-select"
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500/80 text-sm font-semibold cursor-pointer"
+                className="w-full px-4 py-2 rounded-xl bg-surface-alt border border-border text-text focus:outline-none focus:border-accent text-sm font-semibold cursor-pointer"
               >
                 {CURRENCIES.map((c) => (
-                  <option key={c.symbol} value={c.symbol} className="bg-slate-900 text-slate-100">
+                  <option key={c.symbol} value={c.symbol} className="bg-surface text-text">
                     {c.label}
                   </option>
                 ))}
@@ -155,17 +155,17 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onSave, initia
           </div>
 
           {/* Rate Preview Card */}
-          <div className="p-4 rounded-xl bg-slate-950/80 border border-emerald-900/30 flex items-center justify-between">
+          <div className="p-4 rounded-2xl bg-surface-alt border border-border-accent flex items-center justify-between">
             <div>
-              <span className="text-xs text-slate-400 block">Your Calculated Net Rate</span>
-              <div className="text-xl sm:text-2xl font-bold font-mono-num text-emerald-400 flex items-baseline gap-1 mt-0.5">
+              <span className="text-xs text-text-muted block">Your Calculated Net Rate</span>
+              <div className="text-xl sm:text-2xl font-bold font-mono-num text-accent flex items-baseline gap-1 mt-0.5">
                 {formatCurrency(hourlyRate, currency)}
-                <span className="text-xs font-medium text-slate-400">/ hour of life</span>
+                <span className="text-xs font-medium text-text-muted">/ hour of life</span>
               </div>
             </div>
-            <div className="text-right text-xs text-slate-400">
+            <div className="text-right text-xs text-text-muted">
               <span>Annual Net:</span>
-              <div className="font-semibold text-slate-200 font-mono-num">
+              <div className="font-semibold text-text font-mono-num">
                 {formatCurrency(annualNet, currency, false)}
               </div>
             </div>
@@ -175,7 +175,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onSave, initia
             id="start-timeworth-btn"
             type="submit"
             disabled={parsedIncome <= 0 || hourlyRate <= 0}
-            className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:pointer-events-none text-slate-950 font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-colors shadow-lg shadow-emerald-950/50 cursor-pointer"
+            className="w-full py-4 px-4 rounded-xl bg-accent hover:opacity-90 disabled:opacity-50 disabled:pointer-events-none text-background font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-colors shadow-lg cursor-pointer"
           >
             <span>Start Mindful Spending</span>
             <ArrowRight className="w-4 h-4" />

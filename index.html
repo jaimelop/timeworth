@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>TimeWorth — Mindful Life Energy Spending Calculator</title>
     <meta name="description" content="Convert any monetary expense into the hours of life-energy required to earn it." />
-    <meta name="theme-color" content="#0f172a" />
+    <meta name="theme-color" content="#09090B" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><polyline points='12 6 12 12 16 14'/></svg>" />
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192' fill='none'><rect width='192' height='192' rx='48' fill='%230f172a'/><circle cx='96' cy='96' r='68' stroke='%2310b981' stroke-width='14' stroke-linecap='round' stroke-dasharray='12 8'/><path d='M96 52V96L126 112' stroke='%23f8fafc' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/><circle cx='96' cy='96' r='10' fill='%2310b981'/></svg>" />
@@ -13,11 +13,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FOUC prevention: apply theme class before first paint -->
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('timeworth_theme_v1');
+          if (theme === 'light') {
+            // light mode — no class needed
+          } else if (theme === 'system') {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              document.documentElement.classList.add('dark');
+            }
+          } else {
+            // default to dark
+            document.documentElement.classList.add('dark');
+          }
+        } catch(e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
-  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-emerald-500/20 selection:text-emerald-200">
+  <body class="bg-background text-text antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
-

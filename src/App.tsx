@@ -192,7 +192,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-emerald-500/20 selection:text-emerald-300">
+    <div className="min-h-screen bg-background text-text flex flex-col">
       {/* Onboarding Modal if not setup */}
       {!profile.isSetupComplete && (
         <OnboardingModal onSave={handleSaveProfile} initialProfile={profile} />
@@ -212,17 +212,17 @@ export default function App() {
       />
 
       {/* Main Content Body */}
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 space-y-6">
         {/* PWA Install Banner (if installable on device) */}
         {isInstallable && (
-          <div className="p-3.5 rounded-xl bg-slate-900 border border-emerald-900/50 flex items-center justify-between gap-3 text-xs">
-            <div className="flex items-center gap-2 text-slate-300">
-              <Download className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="p-4 rounded-2xl bg-surface border border-border-accent flex items-center justify-between gap-4 text-xs">
+            <div className="flex items-center gap-2 text-text-muted">
+              <Download className="w-4 h-4 text-accent shrink-0" />
               <span>Install TimeWorth as an app on your home screen for quick offline access.</span>
             </div>
             <button
               onClick={handleInstallPWA}
-              className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold shrink-0 transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-accent hover:opacity-90 text-background font-bold shrink-0 transition-colors cursor-pointer"
             >
               Install App
             </button>
@@ -233,21 +233,21 @@ export default function App() {
         <CalculatorCard profile={profile} onDecision={handleDecision} />
 
         {/* Stats Dashboard Card */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
           {/* Card 1: Reclaimed Freedom */}
-          <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 space-y-1.5">
-            <div className="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider">
-              <span className="flex items-center gap-1.5 text-emerald-400">
+          <div className="p-4 rounded-2xl bg-surface border border-border space-y-2">
+            <div className="flex items-center justify-between text-text-muted text-xs font-semibold uppercase tracking-wider">
+              <span className="flex items-center gap-2 text-secondary-pop">
                 <ShieldCheck className="w-4 h-4" /> Lifetime Reclaimed
               </span>
-              <span className="text-[10px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-800/40">
+              <span className="text-[10px] bg-secondary-pop-muted text-secondary-pop px-2 py-0.5 rounded border border-secondary-pop/30">
                 {history.filter((h) => h.decision === 'not_worth_it').length} wins
               </span>
             </div>
-            <div className="text-2xl font-bold font-mono-num text-emerald-300 tracking-tight">
+            <div className="text-2xl font-bold font-mono-num text-secondary-pop tracking-tight">
               {formatHoursMinutes(lifetimeSavedHours)}
             </div>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-text-muted">
               {profile.showMoneyInStats
                 ? `${formatCurrency(lifetimeSavedMoney, profile.currency, false)} in purchases avoided`
                 : 'Life energy preserved for personal freedom'}
@@ -255,40 +255,40 @@ export default function App() {
           </div>
 
           {/* Card 2: Conscious Purchases */}
-          <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 space-y-1.5">
-            <div className="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider">
-              <span className="flex items-center gap-1.5 text-indigo-400">
+          <div className="p-4 rounded-2xl bg-surface border border-border space-y-2">
+            <div className="flex items-center justify-between text-text-muted text-xs font-semibold uppercase tracking-wider">
+              <span className="flex items-center gap-2 text-accent">
                 <CheckCircle className="w-4 h-4" /> Conscious Spends
               </span>
-              <span className="text-[10px] bg-indigo-950 text-indigo-300 px-1.5 py-0.5 rounded border border-indigo-800/40">
+              <span className="text-[10px] bg-accent-muted text-accent px-2 py-0.5 rounded border border-accent/30">
                 {history.filter((h) => h.decision === 'worth_it').length} choices
               </span>
             </div>
-            <div className="text-2xl font-bold font-mono-num text-slate-100 tracking-tight">
+            <div className="text-2xl font-bold font-mono-num text-text tracking-tight">
               {formatHoursMinutes(lifetimeIntentionalHours)}
             </div>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-text-muted">
               Traded intentionally with zero regret
             </p>
           </div>
 
           {/* Card 3: Quick Action / History Shortcut */}
-          <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 flex flex-col justify-between space-y-2">
+          <div className="p-4 rounded-2xl bg-surface border border-border flex flex-col justify-between space-y-2">
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+              <div className="text-xs font-semibold uppercase tracking-wider text-text-muted flex items-center justify-between">
                 <span>Recent Log</span>
-                <span className="text-[10px] text-slate-500 font-mono-num">{history.length} evaluated</span>
+                <span className="text-[10px] text-text-faint font-mono-num">{history.length} evaluated</span>
               </div>
-              <p className="text-xs text-slate-300 mt-1 font-medium line-clamp-1">
+              <p className="text-xs text-text-muted mt-1 font-medium line-clamp-1">
                 {history[0] ? `Latest: ${history[0].title} (${history[0].formattedTime})` : 'No evaluations yet'}
               </p>
             </div>
 
             <button
               onClick={() => setIsHistoryOpen(true)}
-              className="w-full py-1.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+              className="w-full py-2 px-4 rounded-xl bg-surface-alt hover:opacity-80 text-text text-xs font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
-              <ListOrdered className="w-3.5 h-3.5" />
+              <ListOrdered className="w-4 h-4" />
               <span>Open History & Wins</span>
             </button>
           </div>
@@ -296,20 +296,20 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-slate-900 py-4 text-center text-xs text-slate-500">
+      <footer className="w-full border-t border-border py-4 text-center text-xs text-text-faint">
         <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <span>TimeWorth • Mindful spending in life-energy</span>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <button
               onClick={() => setIsAboutOpen(true)}
-              className="hover:text-slate-300 transition-colors"
+              className="hover:text-text transition-colors"
             >
               Philosophy & Rules
             </button>
             <span>•</span>
             <button
               onClick={() => setIsSettingsOpen(true)}
-              className="hover:text-slate-300 transition-colors"
+              className="hover:text-text transition-colors"
             >
               Configure Rate
             </button>

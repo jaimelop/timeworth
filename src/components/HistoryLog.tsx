@@ -76,18 +76,18 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-      <div className="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
+      <div className="w-full max-w-2xl bg-surface border border-border rounded-2xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 flex items-center justify-between gap-4">
+        <div className="p-4 border-b border-border flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2">
+            <h2 className="text-lg font-bold text-text flex items-center gap-2">
               <span>Decision History</span>
-              <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-mono-num">
+              <span className="text-xs px-2 py-0.5 rounded-full bg-surface-alt text-text-muted font-mono-num">
                 {history.length}
               </span>
             </h2>
-            <p className="text-xs text-slate-400">Track all your mindful spending evaluations</p>
+            <p className="text-xs text-text-muted">Track all your mindful spending evaluations</p>
           </div>
 
           <div className="flex items-center gap-2">
@@ -95,7 +95,7 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
               <button
                 onClick={handleExport}
                 title="Export as JSON"
-                className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-slate-100 transition-colors text-xs flex items-center gap-1"
+                className="p-2 rounded-xl bg-surface-alt text-text-muted hover:text-text transition-colors text-xs flex items-center gap-1"
               >
                 <Download className="w-4 h-4" />
                 <span className="hidden sm:inline">Export</span>
@@ -103,7 +103,7 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
             )}
             <button
               onClick={onClose}
-              className="p-2 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-xl text-text-muted hover:text-text hover:bg-surface-alt transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -111,95 +111,95 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
         </div>
 
         {/* Stats Summary Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 p-4 bg-slate-950/60 border-b border-slate-800/80 text-xs">
-          <div className="p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-800/40">
-            <span className="text-emerald-400 font-medium block">Total Reclaimed</span>
-            <span className="text-sm sm:text-base font-bold font-mono-num text-emerald-300">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 p-4 bg-surface-alt border-b border-border text-xs">
+          <div className="p-2 rounded-xl bg-secondary-pop-muted border border-secondary-pop/30">
+            <span className="text-secondary-pop font-medium block">Total Reclaimed</span>
+            <span className="text-sm sm:text-base font-bold font-mono-num text-secondary-pop">
               {formatHoursMinutes(totalSavedHours)}
             </span>
             {profile.showMoneyInStats && (
-              <span className="text-[10px] text-emerald-400/80 block">
+              <span className="text-[10px] text-secondary-pop/70 block">
                 {formatCurrency(totalSavedMoney, profile.currency, false)} saved
               </span>
             )}
           </div>
 
-          <div className="p-2.5 rounded-xl bg-indigo-950/40 border border-indigo-800/40">
-            <span className="text-indigo-400 font-medium block">Intentional Spend</span>
-            <span className="text-sm sm:text-base font-bold font-mono-num text-indigo-300">
+          <div className="p-2 rounded-xl bg-accent-muted border border-accent/30">
+            <span className="text-accent font-medium block">Intentional Spend</span>
+            <span className="text-sm sm:text-base font-bold font-mono-num text-accent">
               {formatHoursMinutes(totalIntentionalHours)}
             </span>
-            <span className="text-[10px] text-indigo-400/80 block">conscious choices</span>
+            <span className="text-[10px] text-accent/70 block">conscious choices</span>
           </div>
 
-          <div className="col-span-2 sm:col-span-1 p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-            <span className="text-slate-400 font-medium block">Reclaim Rate</span>
-            <span className="text-sm sm:text-base font-bold font-mono-num text-slate-200">
+          <div className="col-span-2 sm:col-span-1 p-2 rounded-xl bg-surface border border-border">
+            <span className="text-text-muted font-medium block">Reclaim Rate</span>
+            <span className="text-sm sm:text-base font-bold font-mono-num text-text">
               {history.length > 0
                 ? Math.round((history.filter((h) => h.decision === 'not_worth_it').length / history.length) * 100)
                 : 0}
               %
             </span>
-            <span className="text-[10px] text-slate-400 block">freedom preserved</span>
+            <span className="text-[10px] text-text-muted block">freedom preserved</span>
           </div>
         </div>
 
         {/* Controls: Search & Filter */}
-        <div className="p-4 border-b border-slate-800/60 flex flex-col sm:flex-row gap-2.5 justify-between">
+        <div className="p-4 border-b border-border flex flex-col sm:flex-row gap-2 justify-between">
           {/* Search */}
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-text-faint absolute left-4 top-2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search items..."
-              className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500"
+              className="w-full pl-10 pr-4 py-2 rounded-xl bg-surface-alt border border-border text-xs text-text placeholder:text-text-faint focus:outline-none focus:border-accent"
             />
           </div>
 
           {/* Filter Pills */}
-          <div className="flex gap-1.5 self-end sm:self-auto">
+          <div className="flex gap-2 self-end sm:self-auto">
             <button
               onClick={() => setFilterType('all')}
-              className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
+              className={`px-4 py-1 rounded-xl text-xs font-medium transition-colors ${
                 filterType === 'all'
-                  ? 'bg-slate-700 text-slate-100'
-                  : 'bg-slate-800/60 text-slate-400 hover:text-slate-200'
+                  ? 'bg-surface-alt text-text border border-border'
+                  : 'text-text-muted hover:text-text'
               }`}
             >
               All ({history.length})
             </button>
             <button
               onClick={() => setFilterType('not_worth_it')}
-              className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors flex items-center gap-1 ${
+              className={`px-4 py-1 rounded-xl text-xs font-medium transition-colors flex items-center gap-1 ${
                 filterType === 'not_worth_it'
-                  ? 'bg-emerald-900/80 text-emerald-200 border border-emerald-700'
-                  : 'bg-slate-800/60 text-slate-400 hover:text-slate-200'
+                  ? 'bg-secondary-pop-muted text-secondary-pop border border-secondary-pop/40'
+                  : 'text-text-muted hover:text-text'
               }`}
             >
-              <ShieldCheck className="w-3 h-3 text-emerald-400" />
+              <ShieldCheck className="w-3 h-3 text-secondary-pop" />
               Reclaimed ({history.filter((h) => h.decision === 'not_worth_it').length})
             </button>
             <button
               onClick={() => setFilterType('worth_it')}
-              className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors flex items-center gap-1 ${
+              className={`px-4 py-1 rounded-xl text-xs font-medium transition-colors flex items-center gap-1 ${
                 filterType === 'worth_it'
-                  ? 'bg-indigo-900/80 text-indigo-200 border border-indigo-700'
-                  : 'bg-slate-800/60 text-slate-400 hover:text-slate-200'
+                  ? 'bg-accent-muted text-accent border border-accent/40'
+                  : 'text-text-muted hover:text-text'
               }`}
             >
-              <CheckCircle2 className="w-3 h-3 text-indigo-400" />
+              <CheckCircle2 className="w-3 h-3 text-accent" />
               Worth It ({history.filter((h) => h.decision === 'worth_it').length})
             </button>
           </div>
         </div>
 
         {/* Records List */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-2.5 divide-y divide-slate-800/40">
+        <div className="flex-1 overflow-y-auto p-4 space-y-2 divide-y divide-border/40">
           {filteredHistory.length === 0 ? (
-            <div className="text-center py-12 text-slate-500 text-sm space-y-2">
-              <Clock className="w-8 h-8 mx-auto stroke-[1.5] text-slate-600" />
+            <div className="text-center py-12 text-text-faint text-sm space-y-2">
+              <Clock className="w-8 h-8 mx-auto stroke-[1.5] text-text-faint" />
               <p>No decision records found.</p>
             </div>
           ) : (
@@ -208,15 +208,15 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
               return (
                 <div
                   key={item.id}
-                  className="pt-2.5 first:pt-0 flex items-start justify-between gap-3 group"
+                  className="pt-2 first:pt-0 flex items-start justify-between gap-4 group"
                 >
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-4">
                     {/* Status Badge Icon */}
                     <div
                       className={`mt-0.5 p-2 rounded-xl border ${
                         isSavingsWin
-                          ? 'bg-emerald-950/60 border-emerald-700/50 text-emerald-400'
-                          : 'bg-slate-950/60 border-indigo-800/50 text-indigo-400'
+                          ? 'bg-secondary-pop-muted border-secondary-pop/40 text-secondary-pop'
+                          : 'bg-accent-muted border-accent/40 text-accent'
                       }`}
                     >
                       {isSavingsWin ? (
@@ -228,17 +228,17 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
 
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-semibold text-slate-200 text-sm">{item.title}</span>
+                        <span className="font-semibold text-text text-sm">{item.title}</span>
                         {item.isSubscription && (
-                          <span className="text-[10px] font-semibold text-amber-400 bg-amber-950/60 border border-amber-800/40 px-1.5 py-0.2 rounded flex items-center gap-1">
+                          <span className="text-[10px] font-semibold text-warning bg-warning/10 border border-warning/30 px-2 py-0.5 rounded flex items-center gap-1">
                             <Repeat className="w-2.5 h-2.5" /> /month (Yearly Debt)
                           </span>
                         )}
                         <span
                           className={`text-[10px] font-semibold px-2 py-0.5 rounded uppercase tracking-wider ${
                             isSavingsWin
-                              ? 'bg-emerald-950 border border-emerald-800/60 text-emerald-400'
-                              : 'bg-slate-800 text-slate-400'
+                              ? 'bg-secondary-pop-muted border border-secondary-pop/30 text-secondary-pop'
+                              : 'bg-surface-alt text-text-muted'
                           }`}
                         >
                           {isSavingsWin ? 'Reclaimed' : 'Intentional'}
@@ -247,12 +247,12 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
 
                       {/* Psychological Quote Snippet */}
                       {item.feedbackPhrase && (
-                        <p className="text-xs text-slate-400 italic">
+                        <p className="text-xs text-text-muted italic">
                           "{item.feedbackPhrase}"
                         </p>
                       )}
 
-                      <div className="flex items-center gap-3 text-[11px] text-slate-500 font-mono-num">
+                      <div className="flex items-center gap-4 text-[11px] text-text-faint font-mono-num">
                         <span>{formatTimestamp(item.timestamp)}</span>
                         <span>•</span>
                         <span>
@@ -264,16 +264,16 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
                   </div>
 
                   {/* Right time & delete action */}
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <div className="text-right">
                       <div
                         className={`font-bold font-mono-num text-sm sm:text-base ${
-                          isSavingsWin ? 'text-emerald-400' : 'text-slate-300'
+                          isSavingsWin ? 'text-secondary-pop' : 'text-text-muted'
                         }`}
                       >
                         {isSavingsWin ? `+${item.formattedTime}` : item.formattedTime}
                       </div>
-                      <span className="text-[10px] text-slate-500 block">
+                      <span className="text-[10px] text-text-faint block">
                         {isSavingsWin ? 'reclaimed' : 'spent'}
                       </span>
                     </div>
@@ -281,7 +281,7 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
                     <button
                       onClick={() => onDeleteRecord(item.id)}
                       title="Delete record"
-                      className="opacity-40 group-hover:opacity-100 p-1.5 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-lg transition-all"
+                      className="opacity-40 group-hover:opacity-100 p-2 text-text-muted hover:text-danger hover:bg-surface-alt rounded-xl transition-all"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -294,8 +294,8 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
 
         {/* Footer with Clear All */}
         {history.length > 0 && (
-          <div className="p-3.5 bg-slate-950/90 border-t border-slate-800 flex justify-between items-center text-xs">
-            <span className="text-slate-400">
+          <div className="p-4 bg-surface-alt border-t border-border flex justify-between items-center text-xs">
+            <span className="text-text-muted">
               Stored 100% locally in your browser
             </span>
             <button
@@ -304,9 +304,9 @@ export const HistoryLog: React.FC<HistoryLogProps> = ({
                   onClearHistory();
                 }
               }}
-              className="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 font-medium"
+              className="text-danger hover:opacity-80 transition-colors flex items-center gap-1 font-medium"
             >
-              <Trash2 className="w-3.5 h-3.5" />
+              <Trash2 className="w-4 h-4" />
               <span>Clear History</span>
             </button>
           </div>
