@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>TimeWorth — Mindful Life Energy Spending Calculator</title>
+    <meta name="description" content="Convert any monetary expense into the hours of life-energy required to earn it." />
+    <meta name="theme-color" content="#09090B" />
+    <link rel="manifest" href="/timeworth/manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/timeworth/icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/timeworth/icons/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/timeworth/icons/icon-maskable-192.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FOUC prevention: apply theme class before first paint -->
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('timeworth_theme_v1');
+          if (theme === 'light') {
+            // light mode — no class needed
+          } else if (theme === 'system') {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              document.documentElement.classList.add('dark');
+            }
+          } else {
+            // default to dark
+            document.documentElement.classList.add('dark');
+          }
+        } catch(e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/timeworth/assets/index-BU47YJwQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/timeworth/assets/index-1vT60--O.css">
+  </head>
+  <body class="bg-background text-text antialiased">
+    <div id="root"></div>
+  </body>
+</html>
