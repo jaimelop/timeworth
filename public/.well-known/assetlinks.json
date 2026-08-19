@@ -1,11 +1,13 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.timeworth.app",
+      "package_name": "com.jaimelop.timeworth",
       "sha256_cert_fingerprints": [
-        "TODO:REPLACE_WITH_YOUR_SHA256_FINGERPRINT_FROM_PLAY_CONSOLE"
+        "59:75:BB:F1:A8:BB:9A:D7:40:8A:AB:F8:35:76:97:8E:92:03:CC:83:79:F7:37:36:AB:9D:95:ED:C5:12:39:48"
       ]
     }
   }
